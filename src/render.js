@@ -27,7 +27,7 @@ function reset(buttonRef) {
             buttonRef.changeText('Pause');
             break;
         default:
-            console.log(buttonRef)
+            return
     }
 }
 
@@ -71,13 +71,6 @@ pauseButton.onclick = e => {
         
 }
 
-// If you click on any button and video surce is not selected throw an error!
-async function statuss() {
-    if (!mediaRecorder) { console.log('hmmm') }
-}
-// if (!mediaRecorder) {
-//     document.getElementById('feedback').innerText = 'Please select a video source first'
-// }
 
 // Click to list all available video sources
 const selectVideoSource = document.getElementById('selectVideoSource');
@@ -138,40 +131,30 @@ async function selectSource(source) {
         }
     }
 
-    let stream = null;
+    // Create stream
+    const stream = await navigator.mediaDevices.getUserMedia(constraints);
 
-    try {
+    // Set the video source object on the frontend to be the stream
+    previewVideo.srcObject = stream;
+    previewVideo.play();
 
-        // Create stream
-        const stream = await navigator.mediaDevices.getUserMedia(constraints);
-
-        // Set the video source object on the frontend to be the stream
-        previewVideo.srcObject = stream;
-        previewVideo.play();
-
-        // ===== Start RECORDING ===== //
+    // ===== Start RECORDING ===== //
 
 
-        // The MediaRecorder interface of the MediaStream Recording API provides functionality to easily record media. 
-        // Source: https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder
-        mediaRecorder = new MediaRecorder(stream, mediaRecorderOptions);
+    // The MediaRecorder interface of the MediaStream Recording API provides functionality to easily record media. 
+    // Source: https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder
+    mediaRecorder = new MediaRecorder(stream, mediaRecorderOptions);
 
-        // Some Events when recording starts
-        mediaRecorder.ondataavailable = handleVideoDataExists;
-        mediaRecorder.onstop = handleVideoDataStopped;
+    // Some Events when recording starts
+    mediaRecorder.ondataavailable = handleVideoDataExists;
+    mediaRecorder.onstop = handleVideoDataStopped;
 
-    } catch (err) {
-        /* handle the error */
-        console.error(err, `Either one or both of the media tracks with the specified type does not apply. Consider adjusting the constraints. 
-        Eg. Change audio: true to false.
-        For more information on applying constraints, visit https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia`)
-    }
+    
 }
 
 
 // Combine video chunks into one array
 function handleVideoDataExists(e) {
-    console.log('Video data is available ', e);
     chunks.push(e.data);
 }
 
@@ -194,9 +177,8 @@ async function handleVideoDataStopped(e) {
         defaultPath: `twa me ScreenRecording-01.webm`,
     });
 
-    console.log(filePath);
     document.querySelector('.saveLocation').innerText = `video saved at  ${filePath}`;
-    writeFile(filePath, buffer, () => console.log('video saved at ', filePath));
+    writeFile(filePath, buffer);
 }
 
 

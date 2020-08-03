@@ -1,8 +1,8 @@
 {
-  "name": "eletron-app",
-  "productName": "eletron-app",
+  "name": "Twa_Me",
+  "productName": "Twa Me",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "Screen Recorder for MacOS, Windows & Linux",
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
@@ -24,7 +24,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "eletron_app"
+            "name": "Twa Me"
           }
         },
         {
@@ -32,6 +32,12 @@
           "platforms": [
             "darwin"
           ]
+        },
+        {
+          "name": "@electron-forge/maker-dmg",
+          "config": {
+            "format": "ULFO"
+          }
         },
         {
           "name": "@electron-forge/maker-deb",
@@ -45,6 +51,7 @@
     }
   },
   "dependencies": {
+    "@electron-forge/maker-dmg": "^6.0.0-beta.52",
     "electron-squirrel-startup": "^1.0.0"
   },
   "devDependencies": {
