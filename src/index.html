@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Twa Me 📸 - Screen Recording App for MacOS, Windows & Linux </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+    <script defer src="render.js"></script>
+  </head>
+  <body>
+    <h1 class="title"> Twa Me 📸 </h1>
+    <h2>
+      Screen Recorder for MacOS, Windows & Linux
+    </h2>
+    <main>
+
+      <video src="#" id="videoPreview"></video>
+  
+      <!-- Actions buttons -->
+      <button id="startButton" type="button" class="button success -start">
+        <div class="button__icon material-icons">play_arrow</div>
+        <div class="button__text">
+          Start
+        </div>
+      </button>
+      <button id="stopButton" type="button" class="button alert -stop">
+        <div class="button__icon material-icons">stop</div>
+          <div class="button__text">
+            Stop
+          </div>
+        </button>
+      <button id="pauseButton" type="button" class="button warning -pause">
+        <div class="button__icon material-icons">pause</div>
+          <div class="button__text">
+            Pause
+          </div>
+        </button>
+
+        <p id="feedback" class="saveLocation"></p>
+        
+        <hr />
+        <button id="selectVideoSource" class="button">
+          <div class="button__icon material-icons">play_arrow</div>
+            <div class="button-text">
+              Choose a Video Source
+            </div>
+      </button>
+    </main>
+  </body>
+</html>
