@@ -12,7 +12,7 @@ startButton.onclick = e => {
         startButton.querySelector('.button__text').innerText = 'Recording';
     }
 }
-
+// Change inner text of button when an event is triggered
 function changeText(newText) {
     querySelector('.button__text').innerText = newText;
 }
@@ -31,7 +31,7 @@ function reset(buttonRef) {
     }
 }
 
-// Click to pause the  recording
+// Click to stop the  recording
 const stopButton = document.getElementById('stopButton');
 stopButton.onclick = e => {
     // Run only when a video source has been selected
@@ -46,7 +46,7 @@ stopButton.onclick = e => {
     
 }
 
-// Click to stop recording
+// Click to pause the recording
 const pauseButton = document.getElementById('pauseButton');
 pauseButton.onclick = e => {
     // Run only when a video source has been selected
